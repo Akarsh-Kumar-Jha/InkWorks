@@ -3,24 +3,15 @@ let context = canvas.getContext('2d');
 let selectedColor = 'black'
 let selectedWidth = 2;
 
-
-
-
 function resizeCanvas() {
     canvas.width = window.innerWidth * 0.9; // 90% of the window width
     canvas.height = window.innerHeight * 0.9; // 90% of the window height
 }
 
+// Call resizeCanvas function initially and when window is resized
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-canvas.addEventListener("touchstart", function (event) {
-    startDrawing(event.touches[0]);
-});
-canvas.addEventListener("touchmove", function (event) {
-    draw(event.touches[0]);
-});
-canvas.addEventListener("touchend", stopDrawing);
 // context.fillStyle = 'green';
 // context.fillRect(50,50,200,100)
 
@@ -28,9 +19,6 @@ canvas.addEventListener("touchend", stopDrawing);
 // context.arc(60,60,30,0,2*Math.PI);
 // context.fillStyle = 'blue';
 // context.fill();
-
-
-
 
 // context.font = "20px Arial";
 // context.fillStyle = 'black';
@@ -68,33 +56,37 @@ eraserBtn.addEventListener("click",function(){
     selectedColor = 'white'
 })
 
-
-let lastX = 0;
-let lastY = 0;
+let mouseX;
+let mouseY;
 let isDrawing = false;
 
 canvas.addEventListener("mousedown",startDrawing);
 
 function startDrawing(event) {
     isDrawing = true;
-    [lastX, lastY] = [event.clientX, event.clientY];
+    mouseX = event.offsetX;
+    mouseY = event.offsetY;
 }
 
-canvas.addEventListener("mousemove", draw);
+canvas.addEventListener("mousemove",Draw);
 
+function Draw(event) {
+    if(!isDrawing) return;
+    let newX,newY;
+    newX = event.offsetX;
+    newY = event.offsetY;
 
-function draw(event) {
-    if (!isDrawing) return;
     context.beginPath();
-    context.moveTo(lastX, lastY);
-    context.lineTo(event.clientX, event.clientY);
+    context.moveTo(mouseX,mouseY);
+    context.lineTo(newX,newY);
     context.strokeStyle = selectedColor;
     context.lineWidth = selectedWidth;
     context.lineCap = 'round';
     context.stroke();
-    [lastX, lastY] = [event.clientX, event.clientY];
+    mouseX = newX;
+    mouseY = newY;
+    console.log("working");
 }
-
 
 canvas.addEventListener("mouseup",stopDrawing);
 canvas.addEventListener("mouseout",stopDrawing);
@@ -104,6 +96,5 @@ function stopDrawing(){
 }
 
 document.querySelector("#ClrBtn").addEventListener("click",function(){
-context.clearRect(0,0,canvas.width,canvas.height);
+    context.clearRect(0,0,canvas.width,canvas.height);
 });
-
