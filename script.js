@@ -20,6 +20,9 @@ window.addEventListener('resize', resizeCanvas);
 // context.fillStyle = 'blue';
 // context.fill();
 
+
+
+
 // context.font = "20px Arial";
 // context.fillStyle = 'black';
 // context.fillText("Akarsh Jha",80,80);
@@ -56,13 +59,14 @@ eraserBtn.addEventListener("click",function(){
     selectedColor = 'white'
 })
 
+
 let mouseX;
 let mouseY;
 let isDrawing = false;
 
 canvas.addEventListener("mousedown",startDrawing);
 
-function startDrawing(event) {
+function startDrawing(event){
     isDrawing = true;
     mouseX = event.offsetX;
     mouseY = event.offsetY;
@@ -70,22 +74,22 @@ function startDrawing(event) {
 
 canvas.addEventListener("mousemove",Draw);
 
-function Draw(event) {
-    if(!isDrawing) return;
-    let newX,newY;
-    newX = event.offsetX;
-    newY = event.offsetY;
+function Draw(event){
+if(!isDrawing) return;
+let newX,newY;
+newX = event.offsetX;
+newY = event.offsetY;
 
-    context.beginPath();
-    context.moveTo(mouseX,mouseY);
-    context.lineTo(newX,newY);
-    context.strokeStyle = selectedColor;
-    context.lineWidth = selectedWidth;
-    context.lineCap = 'round';
-    context.stroke();
-    mouseX = newX;
-    mouseY = newY;
-    console.log("working");
+context.beginPath();
+context.moveTo(mouseX,mouseY);
+context.lineTo(newX,newY);
+context.strokeStyle = selectedColor;
+context.lineWidth = selectedWidth;
+context.lineCap = 'round';
+context.stroke();
+mouseX = newX;
+mouseY = newY;
+console.log("working")
 }
 
 canvas.addEventListener("mouseup",stopDrawing);
@@ -96,5 +100,6 @@ function stopDrawing(){
 }
 
 document.querySelector("#ClrBtn").addEventListener("click",function(){
-    context.clearRect(0,0,canvas.width,canvas.height);
+context.clearRect(0,0,canvas.width,canvas.height);
 });
+
