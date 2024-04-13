@@ -80,7 +80,8 @@ function startDrawing(event) {
     [lastX, lastY] = [event.clientX, event.clientY];
 }
 
-canvas.addEventListener("mousemove",Draw);
+canvas.addEventListener("mousemove", draw);
+
 
 function draw(event) {
     if (!isDrawing) return;
