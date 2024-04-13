@@ -14,8 +14,12 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
-canvas.addEventListener("touchstart", startDrawing);
-canvas.addEventListener("touchmove", Draw);
+canvas.addEventListener("touchstart", function (event) {
+    startDrawing(event.touches[0]);
+});
+canvas.addEventListener("touchmove", function (event) {
+    draw(event.touches[0]);
+});
 canvas.addEventListener("touchend", stopDrawing);
 // context.fillStyle = 'green';
 // context.fillRect(50,50,200,100)
@@ -65,37 +69,31 @@ eraserBtn.addEventListener("click",function(){
 })
 
 
-let mouseX;
-let mouseY;
+let lastX = 0;
+let lastY = 0;
 let isDrawing = false;
 
 canvas.addEventListener("mousedown",startDrawing);
 
-function startDrawing(event){
+function startDrawing(event) {
     isDrawing = true;
-    mouseX = event.offsetX;
-    mouseY = event.offsetY;
+    [lastX, lastY] = [event.clientX, event.clientY];
 }
 
 canvas.addEventListener("mousemove",Draw);
 
-function Draw(event){
-if(!isDrawing) return;
-let newX,newY;
-newX = event.offsetX;
-newY = event.offsetY;
-
-context.beginPath();
-context.moveTo(mouseX,mouseY);
-context.lineTo(newX,newY);
-context.strokeStyle = selectedColor;
-context.lineWidth = selectedWidth;
-context.lineCap = 'round';
-context.stroke();
-mouseX = newX;
-mouseY = newY;
-console.log("working")
+function draw(event) {
+    if (!isDrawing) return;
+    context.beginPath();
+    context.moveTo(lastX, lastY);
+    context.lineTo(event.clientX, event.clientY);
+    context.strokeStyle = selectedColor;
+    context.lineWidth = selectedWidth;
+    context.lineCap = 'round';
+    context.stroke();
+    [lastX, lastY] = [event.clientX, event.clientY];
 }
+
 
 canvas.addEventListener("mouseup",stopDrawing);
 canvas.addEventListener("mouseout",stopDrawing);
