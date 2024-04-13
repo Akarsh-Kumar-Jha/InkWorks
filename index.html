@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="navBar">
+        <h1 id="Ink">Ink<span id="Works">Works</span></h1>
+    </div>
+    <canvas id="myCanvas" height="800" width="1800">
+
+    </canvas>
+    <div id="buttonsBox">
+        <input type="color" id="color1" value="#ff0000"> <!-- Red color -->
+        <input type="color" id="color2" value="#00ff00"> <!-- Green color -->
+        <input type="color" id="color3" value="#0000ff"> <!-- Blue color -->
+        <input type="color" id="color4" value="#ffff00"> <!-- Yellow color -->
+    <div class="pen" style="display: flex; align-self: center; justify-content: center;">
+        <label for="penWidth" style="font-size: 25px; color: rgb(0, 0, 0);">2</label>
+        <input type="range" id="penWidth" value="2" min="1" max="14"> <!-- Pen width -->
+    </div>
+        <button id="eraserBtn"><span class="material-symbols-outlined">
+            ink_eraser
+            </span></button> 
+        <button id="ClrBtn">Clear</button>
+    </div>
+   <script src="script.js"></script> 
+</body>
+</html>

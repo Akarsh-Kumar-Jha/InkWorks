@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+canvas {
+    display: block;
+    background: white;
+    border: 1px solid black; 
+    width: 90vw;
+    height: 90vh;
+    margin: auto; /* center the canvas */
+    border-radius: 50px;
+background: #ffffff;
+box-shadow:  20px 20px 60px #d9d9d9,
+             -20px -20px 60px #ffffff;
+}
+#navBar{
+    width: 100vw;
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+#buttonsBox {
+    position: absolute;
+    top: 150px;
+    left: 15px;
+    background-color: rgba(38, 38, 231, 0.523);
+    height: 500px;
+    width: 200px;
+    z-index: 99999;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+#buttonsBox input[type="color"] {
+    width: 100px;
+    height: 30px; 
+}
+
+
+
+@media (max-width: 768px) {
+    #buttonsBox {
+       flex-direction: row; 
+       width: 90vw;
+       height: 10vh;
+       gap:10px;
+       top:85vh;
+    }
+    #buttonsBox input[type="color"] {
+        width: 150px;
+        height: 40px; 
+    }
+      #buttonsBox #penWidth{
+        width: 80px; 
+    }
+    #ClrBtn {
+        padding: 5px;
+    }
+    html,body{
+        height: 100vh;
+        overflow: hidden;
+    }
+}
+
+#penWidth{
+    border-color: gray;
+    height: 20px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    color: black;
+    font-weight: 600;
+}
+#eraserBtn{
+    border-radius: 50%;
+    background-color: yellow;
+    height: 50px;
+    width: 50px;
+}
+
+#ClrBtn {
+    z-index: 1;
+    padding: 12px;
+    background-color: red;
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: large;
+}
+#Ink{
+    color:black;
+}
+#Works{
+    color:orange;
+}
